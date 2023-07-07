@@ -24,4 +24,4 @@ WORKDIR /app
 COPY --from=builder /app/target/orders-service-example-0.0.1-SNAPSHOT.jar .
 
 # Define el comando para ejecutar la aplicación
-CMD ["java", "-jar", "orders-service-example-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "orders-service-example-0.0.1-SNAPSHOT.jar","payments-service-example/app/payments-service-example-0.0.1-SNAPSHOT.jar","products-service-example/app/products-service-example-0.0.1-SNAPSHOT.jar","shipping-service-example/app/shipping-service-example-0.0.1-SNAPSHOT.jar"]
