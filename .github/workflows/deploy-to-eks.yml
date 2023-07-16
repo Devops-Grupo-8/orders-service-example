@@ -53,4 +53,4 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     - name: Run command to deploy EKS
-      run: echo 'deploy.json' | kubectl apply -f -
+      run: kubectl apply -f deploy.json
