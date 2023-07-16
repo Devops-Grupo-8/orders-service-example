@@ -3,7 +3,7 @@ name: Github Action Workflow DEV
 on:
   push:
     branches:
-      - dev
+      - github-Actions-eks
   repository_dispatch:
     types:
       - build-dev
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-dev:
-    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-s3.yml@dev
+    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-eks.yml@dev
     with:
       CI_ENV: dev
       CONTENTFUL_ENVIRONMENT: 'dev'
@@ -25,3 +25,5 @@ jobs:
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN}}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       S3_ORIGIN_BUCKET: ${{ secrets.S3_ORIGIN_BUCKET_DEV }}
+      ECR_REPOSITORY: ${{secrets.ECR_REPOSITORY_ORDERS}}
+      IMAGE_TAG: ${{secrets.IMAGE_TAG_ORDERS}}
