@@ -27,7 +27,7 @@
               "image": "orders-service-example",
               "ports": [
                 {
-                  "containerPort": 80
+                  "containerPort": 55500
                 }
               ]
             }
