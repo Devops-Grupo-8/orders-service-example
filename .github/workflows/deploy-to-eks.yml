@@ -52,3 +52,12 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  deploy:
+    name: Deploy to EKS
+    commands:
+      - kubectl apply -f deploy.yml
+      - echo "Deployment complete"
+
+artifacts:
+  files:
+    - deploy.yml
