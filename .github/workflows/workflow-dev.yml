@@ -1,0 +1,27 @@
+name: Github Action Workflow DEV
+
+on:
+  push:
+    branches:
+      - dev
+  repository_dispatch:
+    types:
+      - build-dev
+  workflow_dispatch:
+
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-dev:
+    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-s3.yml@dev
+    with:
+      CI_ENV: dev
+      CONTENTFUL_ENVIRONMENT: 'dev'
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN}}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      S3_ORIGIN_BUCKET: ${{ secrets.S3_ORIGIN_BUCKET_DEV }}
