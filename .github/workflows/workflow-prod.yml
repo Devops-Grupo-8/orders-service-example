@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-dev:
-    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-s3.yml@main
+    uses: Devops-Grupo-8/orders-service-example/.github/workflows/deploy-to-s3.yml@main
     with:
       CI_ENV: prod
       CONTENTFUL_ENVIRONMENT: 'prod'

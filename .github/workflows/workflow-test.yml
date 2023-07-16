@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-dev:
-    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-s3.yml@test
+    uses: Devops-Grupo-8/orders-service-example/.github/workflows/deploy-to-s3.yml@test
     with:
       CI_ENV: test
       CONTENTFUL_ENVIRONMENT: 'test'
