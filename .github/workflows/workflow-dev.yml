@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-dev:
-    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-eks.yml@dev
+    uses: Devops-Grupo-8/webapp/.github/workflows/deploy-to-eks.yml@github-Actions-eks
     with:
       CI_ENV: dev
       CONTENTFUL_ENVIRONMENT: 'dev'
