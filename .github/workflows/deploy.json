@@ -1,0 +1,39 @@
+{
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+      "name": "orders-service-example-deployment",
+      "labels": {
+        "app": "orders-service-example"
+      }
+    },
+    "spec": {
+      "replicas": 2,
+      "selector": {
+        "matchLabels": {
+          "app": "orders-service-example"
+        }
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "app": "orders-service-example"
+          }
+        },
+        "spec": {
+          "containers": [
+            {
+              "name": "orders-service-example",
+              "image": "orders-service-example",
+              "ports": [
+                {
+                  "containerPort": 80
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+  
