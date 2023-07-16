@@ -1,19 +1,19 @@
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: orders-service-example
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: orders-service-example
-  template:
-    metadata:
-      labels:
-        app: orders-service-example
-    spec:
-      containers:
-        - name: orders-service-example-container
-          image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example
-          ports:
-            - containerPort: 8080
+          kind: Deployment
+          metadata:
+            name: orders-service-example
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: orders-service-example
+            template:
+              metadata:
+                labels:
+                  app: orders-service-example
+              spec:
+                containers:
+                  - name: orders-service-example-container
+                    image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example
+                    ports:
+                      - containerPort: 8080 

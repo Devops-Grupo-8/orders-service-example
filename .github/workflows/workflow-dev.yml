@@ -26,3 +26,4 @@ jobs:
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       ECR_REPOSITORY: ${{secrets.ECR_REPOSITORY_ORDERS}}
       IMAGE_TAG: ${{secrets.IMAGE_TAG_ORDERS}}
+  deploy: ./deploy.yml
