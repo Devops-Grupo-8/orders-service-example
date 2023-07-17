@@ -52,5 +52,17 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-    - name: Run command to deploy EKS
-      run: kubectl apply -f deploy.json
+        
+    - name: Deploy to EKS
+      script:
+          - mkdir $HOME/.kube
+          - cp $KUBECONFIG $HOME/.kube/config
+          - cat $HOME/.kube/config
+          - apk update  && apk add --no-cache curl
+          - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+          - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+          - kubectl config set-context $(kubectl config current-context)
+          - sed -i 's/orders-service-example/'"orders-service-exanple"'/g; deploy-${{ github.ref }}.yml;
+          - sed -i 's/orders-service-example/'"orders-service-exanple"'/g; public_ip_service.yml;
+          - kubectl apply -f kubernetes/deploy-${{ github.ref }}.yaml
+          - kubectl apply -f kubernetes/public_ip_service.yaml
