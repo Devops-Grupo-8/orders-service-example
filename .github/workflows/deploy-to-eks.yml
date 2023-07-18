@@ -58,12 +58,12 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    #- name: Deploy to Cluster
-    #  uses: kodermax/kubectl-aws-eks@master
-    #  env:
-    #    KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-    #    ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} #346054926618.dkr.ecr.us-east-1.amazonaws.com
-    #    ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-    #    IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
-    #  with:
-    #    args: set image deployment/$ECR_REPOSITORY $ECR_REPOSITORY=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    - name: Deploy to Cluster
+      uses: kodermax/kubectl-aws-eks@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} #346054926618.dkr.ecr.us-east-1.amazonaws.com
+        ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
+      with:
+        args: set image deployment/$ECR_REPOSITORY $ECR_REPOSITORY=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
