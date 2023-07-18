@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ms-orders
-          image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/order-service-example-dev
+          image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example_dev
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -29,3 +29,15 @@ spec:
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-orders-service
+spec:
+  selector:
+    app: ms-orders
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
