@@ -61,6 +61,6 @@ jobs:
     - name: Deploy to Kubernetes cluster                                                                            
       uses: kodermax/kubectl-aws-eks@master                                                                         
       env:                                                                                                          
-        RELEASE_IMAGE: ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:${{ secrets.IMAGE_TAG }}
+        RELEASE_IMAGE: 346054926618.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example-dev
       with:                                                                                                         
-        args: set image deployment/${{ IMAGE_TAG }} app=${{ env.RELEASE_IMAGE }} --record -n ${{ github.ref }}
+        args: set image deployment/orders-service-example-dev app=${{ env.RELEASE_IMAGE }} --record -n dev
