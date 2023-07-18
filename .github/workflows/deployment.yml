@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-orders-deployment
+  labels:
+    app: ms-orders
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-orders
+  template:
+    metadata:
+      labels:
+        app: ms-orders
+    spec:
+      containers:
+        - name: ms-orders
+          image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/order-service-example-dev
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
