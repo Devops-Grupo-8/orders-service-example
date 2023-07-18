@@ -53,7 +53,7 @@ jobs:
       env:
         ECR_REGISTRY: 346054926618.dkr.ecr.us-east-1.amazonaws.com
         ECR_REPOSITORY: orders-service-example
-        IMAGE_TAG: ${{ github.ref }}
+        IMAGE_TAG: orders-service-example
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
