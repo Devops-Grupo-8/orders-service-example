@@ -54,18 +54,18 @@ jobs:
         RELEASE_REVISION: "pr-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}"
         ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} #346054926618.dkr.ecr.us-east-1.amazonaws.com
         ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
+        IMAGE_TAG: orders-service-example
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example
 
     - name: Deploy to Cluster
       uses: kodermax/kubectl-aws-eks@master
       env:
         RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.RELEASE_REVISION }}
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} #346054926618.dkr.ecr.us-east-1.amazonaws.com
+        ECR_REGISTRY: 346054926618.dkr.ecr.us-east-1.amazonaws.com
         ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
+        IMAGE_TAG: orders-service-example
       with:
         args: set image deployment/my-pod app=${{ env.RELEASE_IMAGE }} --record -n devops
