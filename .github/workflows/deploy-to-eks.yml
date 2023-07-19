@@ -60,5 +60,6 @@ jobs:
 
     - name: Deploy to Kubernetes cluster                                                                            
       run: |
-        aws eks --region us-east-1 update-kubeconfig --name devops-grupo-8-DEV
+        kubectl config set-context orders-service-dev --cluster=devops-grupo-8-DEV --user=ramiro --namespace=dev
+        kubectl config use-context orders-service-dev
         kubectl apply -f deployment-dev.yml
