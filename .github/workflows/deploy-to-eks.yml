@@ -59,4 +59,4 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example
 
     - name: Deploy to Kubernetes cluster                                                                            
-      run: kubectl apply -f deployment-${{ github.ref }}.yml
+      run: kubectl apply -f deployment-dev.yml
