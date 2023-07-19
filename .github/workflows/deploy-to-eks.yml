@@ -60,7 +60,7 @@ jobs:
 
     - name: Deploy to Kubernetes cluster                                                                            
       run: |
-        kubectl create deployment orders-service-example --image=$ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example-dev-- /agnhost netexec --http-port=8080
+        kubectl create deployment orders-service-example --image=$ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example-dev-- /agnhost netexec --port=8080
         kubectl get deployments
         kubectl get deployments
         kubectl expose deployment orders-service-example --type=LoadBalancer --port=8080
