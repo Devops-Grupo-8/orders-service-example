@@ -60,5 +60,9 @@ jobs:
 
     - name: Deploy to Kubernetes cluster                                                                            
       run: |
-        kubectl config set-cluster devops-grupo-8-DEV --server=${CLUSTER_URL}
-        kubectl apply -f deployment-dev.yml
+        kubectl create deployment orders-service-example --image=$ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example-dev-- /agnhost netexec --http-port=8080
+        kubectl get deployments
+        kubectl get deployments
+        kubectl expose deployment orders-service-example --type=LoadBalancer --port=8080
+        kubectl get services
+        minikube service orders-service-example
