@@ -61,4 +61,4 @@ jobs:
     - name: Deploy to Kubernetes cluster                                                                            
       run: |
         aws eks --region us-east-1 update-kubeconfig --name devops-grupo-8-DEV
-        kubectl apply -f deployment-dev.yaml
+        kubectl apply -f deployment-dev.yml
