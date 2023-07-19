@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-orders-deployment
+  name: service-example-dev-deployment
   labels:
-    app: ms-orders
+    app: orders-service-example-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ms-orders
+      app: orders-service-example-dev
   template:
     metadata:
       labels:
-        app: ms-orders
+        app: orders-service-example-dev
     spec:
       containers:
-        - name: ms-orders
-          image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example_dev
+        - name: orders-service-example-dev
+          image: 346054926618.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example-dev
           ports:
             - containerPort: 8080
           readinessProbe:

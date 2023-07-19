@@ -53,10 +53,10 @@ jobs:
       env:
         ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} #346054926618.dkr.ecr.us-east-1.amazonaws.com
         ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-        IMAGE_TAG: orders-service-example
+        IMAGE_TAG: orders-service-example-${{ github.ref }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: Deploy to Kubernetes cluster                                                                            
       run: kubectl apply -f deployment-dev.yml
