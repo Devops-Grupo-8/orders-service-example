@@ -59,4 +59,6 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:orders-service-example-dev
 
     - name: Deploy to Kubernetes cluster                                                                            
-      run: kubectl create -f deployment-dev.yaml
+      run: |
+        aws eks --region us-east-1 update-kubeconfig --name devops-grupo-8-DEV
+        kubectl apply -f deployment-dev.yaml
