@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: contenedor-orders
-          image: 045017788685.dkr.ecr.us-east-1.amazonaws.com/orders-service-example
+          image: 045017788685.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:orders-service-example-dev
           ports:
             - containerPort: 8080
 ---
