@@ -24,7 +24,7 @@ on:
         required: true
       ECR_REGISTRY:
         required: true
-      KUBE_CONFIG_DATA:
+      CLUSTER_URL:
         required: true
         
 
@@ -60,7 +60,5 @@ jobs:
 
     - name: Deploy to Kubernetes cluster                                                                            
       run: |
-        kubectl config set-context orders-service-dev --cluster=devops-grupo-8-DEV --user=ramiro --namespace=dev
-        kubectl config view
-        kubectl config use-context orders-service-dev
+        kubectl config set-cluster devops-grupo-8-DEV --server=${CLUSTER_URL}
         kubectl apply -f deployment-dev.yml
